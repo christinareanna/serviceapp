@@ -235,87 +235,158 @@
 
 
 import * as React from 'react';
-import { Button, View, Text } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { Button, View, Text, Image, ScrollView, TextInput, Modal } from 'react-native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-function HomeScreen({ navigation }) {
+
+function HomeScreen({ navigation, color }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
+      <MaterialCommunityIcons name="arrow-left" color={color} size={30} onPress={() => navigation.goBack()} />
+      {/* <MaterialCommunityIcons name="home" color={color} size={size} /> */}
+      {/* <Text>Home Screen</Text> */}
       {/* can use to update users on a list maybe? */}
       {/* <Button
         title="Update the title"
         onPress={() => navigation.setOptions({ title: 'Updated!' })}
       /> */}
-      <Button
-        title="Go to details"
-        onPress={() => {
-          navigation.navigate("Details", {
-            itemId: 86,
-            otherParam: "users on app",
-          });
-          // navigation.setParams({
-          //   query: 'someText',
-          // });
-        }}
-      />
+      <ScrollView>
+        <Image
+          style={{ width: 300, height: 300 }}
+          source={require('./components/coffee.jpg')} />
+        <Image
+          style={{ width: 300, height: 300 }}
+          source={require('./components/food.jpg')} />
+        <Image
+          style={{ width: 300, height: 300 }}
+          source={require('./components/cheers.jpg')} />
+        {/* navigation.setParams({
+          query: 'someText',
+        });
+      } */}
+      </ScrollView>
     </View>
   );
 }
 
 
-function SettingsScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Settings Screen</Text>
-      <Button
-        title="Go to Profile"
-        onPress={() => navigation.navigate('Profile')}
-      />
-    </View>
-  );
-}
+// function SettingsScreen({ navigation }) {
+//   return (
+//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//       <Text>Name</Text>
+//       <Button
+//         title="Go to Profile"
+//         color="black"
+//         onPress={() => navigation.navigate('Profile')}
+//       />
+//     </View>
+//   );
+// }
 
 function ProfileScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Profile Screen</Text>
-      <Button
+    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Christina</Text>
+      <Image
+        style={{ width: 300, height: 300 }}
+        source={require('./components/barista.jpg')} />
+      {/* <Button
         title="Go to Settings"
+        color="black"
         onPress={() => navigation.navigate('Settings')}
-      />
+      /> */}
     </View>
   );
 }
 
+function NotificationScreen({ navigation, color }) {
+  return (
+    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+      <Text style={{ textAlign: "center", fontSize: 24 }}><MaterialCommunityIcons name="heart" color={color} size={24} />Nicole liked your post</Text>
+      <Text style={{ textAlign: "center", fontSize: 24 }}><MaterialCommunityIcons name="heart" color={color} size={24} />Jamie liked your post</Text>
+      <Text style={{ textAlign: "center", fontSize: 24 }}><MaterialCommunityIcons name="hand-heart" color={color} size={24} />Leah matched with you</Text>
+      <Text style={{ textAlign: "center", fontSize: 24 }}><MaterialCommunityIcons name="calendar" color={color} size={24} />Terry invited you to an event</Text>
+      <Text style={{ textAlign: "center", fontSize: 24 }}><MaterialCommunityIcons name="calendar" color={color} size={24} />Lara invited you to an event</Text>
+      <Text style={{ textAlign: "center", fontSize: 24 }}><MaterialCommunityIcons name="calendar" color={color} size={24} />Ken invited you to an event</Text>
+      {/* <Button
+        title="Go to Settings"
+        color="black"
+        onPress={() => navigation.navigate('Settings')}
+      /> */}
+    </View>
+  );
+}
 
-function DetailsScreen({ route, navigation }) {
-  const { itemId, otherParam } = route.params;
+function MessageScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details Screen</Text>
-      <Text>itemId: {JSON.stringify(itemId)}</Text>
-      <Text>otherParam: {JSON.stringify(otherParam)}</Text>
-      <Button
-        title="Go to details again"
-        onPress={() =>
-          navigation.push("Details", {
-            itemId: Math.floor(Math.random() * 100),
-          })
-        }
+      {/* <Text>Messages</Text> */}
+      {/* <Button
+        title="Messages"
+        color="black"
+        onPress={() => navigation.navigate('Messages')}
+      /> */}
+      <TextInput
+        style={{
+          borderColor: '#CCCCCC',
+          borderTopWidth: 1,
+          borderBottomWidth: 1,
+          height: 50,
+          fontSize: 25,
+          paddingLeft: 20,
+          paddingRight: 20
+        }}
+        placeholder="Name"
+        maxLength={20}
       />
-      <Button title="Go To Home" onPress={() => navigation.navigate("Home")} />
-      <Button title="Go back" onPress={() => navigation.goBack()} />
-      <Button
-        title="Go back to first screen in stack"
-        onPress={() => navigation.popToTop()}
+      <TextInput
+        style={{
+          borderColor: '#CCCCCC',
+          borderTopWidth: 1,
+          borderBottomWidth: 1,
+          height: 50,
+          fontSize: 25,
+          paddingLeft: 20,
+          paddingRight: 20
+        }}
+        placeholder="Message"
+        maxLength={20}
       />
     </View>
   );
 }
+
+
+// function DetailsScreen({ route, navigation }) {
+//   const { itemId, otherParam } = route.params;
+//   return (
+//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//       <Text>Details Screen</Text>
+//       <Text>itemId: {JSON.stringify(itemId)}</Text>
+//       <Text>otherParam: {JSON.stringify(otherParam)}</Text>
+//       <Button
+//         title="Go to details again"
+//         color="black"
+//         onPress={() =>
+//           navigation.push("Details", {
+//             itemId: Math.floor(Math.random() * 100),
+//           })
+//         }
+//       />
+//       <Button title="Go To Home" onPress={() => navigation.navigate("Home")} />
+//       <Button title="Go back" onPress={() => navigation.goBack()} />
+//       <Button
+//         title="Go back to first screen in stack"
+//         onPress={() => navigation.popToTop()}
+//       />
+//     </View>
+//   );
+// }
+
 
 
 
@@ -327,35 +398,92 @@ const Tab = createBottomTabNavigator();
 const SettingsStack = createNativeStackNavigator();
 const HomeStack = createNativeStackNavigator();
 
+
+
 function App() {
+
   return (
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={{
-          headerShown: false,
-          tabBarActiveTintColor: 'black',
+          // headerShown: false,
+          headerStyle: {
+            backgroundColor: "pink",
+          },
+          tabBarActiveTintColor: 'coral',
         }}>
-        <Tab.Screen name="User">
-          {() => (
+        <Tab.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{
+            tabBarLabel: 'Home',
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="home" color={color} size={size} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Profile"
+          component={ProfileScreen}
+          options={{
+            tabBarLabel: 'Profile',
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="account" color={color} size={size} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Messages"
+          component={MessageScreen}
+          options={{
+            tabBarLabel: 'Messages',
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="message" color={color} size={size} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Notifications"
+          component={NotificationScreen}
+          options={{
+            tabBarLabel: 'Notifications',
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="bell" color={color} size={size} />
+            ),
+            tabBarBadge: 6,
+          }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+}
+{/* <Tab.Screen
+          name="Profile"
+          component={ProfileScreen}
+          options={{
+            tabBarLabel: 'User',
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="account" color={color} size={size} />
+            ),
+          }}
+        /> */}
+{/* {() => (
             <SettingsStack.Navigator>
               <SettingsStack.Screen
                 name="Settings"
                 component={SettingsScreen}
               />
               <SettingsStack.Screen name="Profile" component={ProfileScreen} />
-            </SettingsStack.Navigator>
-          )}
-        </Tab.Screen>
-        <Tab.Screen name="Navigation">
-          {() => (
+            </SettingsStack.Navigator> */}
+
+{/* {() => (
             <HomeStack.Navigator>
               <HomeStack.Screen name="Home" component={HomeScreen} />
               <HomeStack.Screen name="Details" component={DetailsScreen} />
             </HomeStack.Navigator>
-          )}
-        </Tab.Screen>
-      </Tab.Navigator>
-      {/*       
+          )} */}
+{/* </Tab.Screen> */ }
+{/*       
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
@@ -379,8 +507,6 @@ function App() {
           options={({ route }) => ({ title: route.params.name })}
         />
       </Stack.Navigator> */}
-    </NavigationContainer>
-  );
-}
+
 
 export default App;
