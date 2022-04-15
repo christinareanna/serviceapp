@@ -61,7 +61,7 @@
 import React, { useState } from 'react'
 import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import styles from './styles';
-import { firebase } from "./firebase/config"
+import { firebase } from '../src/firebase/config';
 
 function RegistrationScreen({ navigation }) {
     const [fullName, setFullName] = useState('')
