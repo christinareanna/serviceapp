@@ -28,7 +28,7 @@ exports.register = async (req, res) => {
                     password: hash,
                 };
                 var flag = 1; //Declaring a flag
-
+                
                 //Inserting data into the database
 
                 client
