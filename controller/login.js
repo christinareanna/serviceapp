@@ -16,12 +16,12 @@ exports.login = async (req, res) => {
             });
         }
         else {
-            bcrypt.compare(password, user[0].password, (err, result) => { //Comparing the hashed password
+            bcrypt.compare(password, user[0].password, (err, result) => { // Comparing the hashed password
                 if (err) {
                     res.status(500).json({
                         error: "Server error",
                     });
-                } else if (result === true) { //Checking if credentials match
+                } else if (result === true) { // Checking if credentials match
                     const token = jwt.sign(
                         {
                             email: email,
@@ -45,7 +45,7 @@ exports.login = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            error: "Database error occurred while signing in!", //Database connection error
+            error: "Database error occurred while signing in!", // Database connection error
         });
     };
 };

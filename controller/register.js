@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 //Registration Function
 
 exports.register = async (req, res) => {
-    const { name, email, phonenumber, password } = req.body;
+    const { name, email, password } = req.body;
     try {
         const data = await client.query(`SELECT * FROM users WHERE email= $1;`, [email]); //Checking if user already exists
         const arr = data.rows;
@@ -25,7 +25,6 @@ exports.register = async (req, res) => {
                 const user = {
                     name,
                     email,
-                    phonenumber,
                     password: hash,
                 };
                 var flag = 1; //Declaring a flag
@@ -33,10 +32,11 @@ exports.register = async (req, res) => {
                 //Inserting data into the database
 
                 client
-                    .query(`INSERT INTO users (name, email, phonenumber, password) VALUES ($1,$2,$3,$4);`, [user.name, user.email, user.phonenumber, user.password], (err) => {
+                    .query(`INSERT INTO users (user_name, user_email, user_password) VALUES ($1,$2,$3);`, [user.name, user.email, user.password], (err) => {
+                        // come back to fix above to match table user, email, password, or leave it, not sure yet, im indecisive
 
                         if (err) {
-                            flag = 0; //If user is not inserted is not inserted to database assigning flag as 0/false.
+                            flag = 0; // if user is not inserted to database assigning flag as 0/false.
                             console.error(err);
                             return res.status(500).json({
                                 error: "Database error"
@@ -48,7 +48,7 @@ exports.register = async (req, res) => {
                         }
                     })
                 if (flag) {
-                    const token = jwt.sign( //Signing a jwt token
+                    const token = jwt.sign( // Signing a jwt token
                         {
                             email: user.email
                         },
@@ -61,7 +61,7 @@ exports.register = async (req, res) => {
     catch (err) {
         console.log(err);
         res.status(500).json({
-            error: "Database error while registering user!", //Database connection error
+            error: "Database error while registering user!", // Database connection error
         });
     };
 }
