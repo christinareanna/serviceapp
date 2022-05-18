@@ -65,12 +65,13 @@ import styles from './styles';
 function RegistrationScreen({ navigation }) {
     const [fullName, setFullName] = useState('')
     const [email, setEmail] = useState('')
+    const [phoneNumber, setPhoneNumber] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
 
     const onFooterLinkPress = () => {
         navigation.navigate('Login')
-        // come back and adjust?
+        // come back and adjust and make a navigation page for a login 
     }
 
     const onRegisterPress = () => {
@@ -83,8 +84,18 @@ function RegistrationScreen({ navigation }) {
                 style={styles.input}
                 placeholder='Full Name'
                 placeholderTextColor="#aaaaaa"
-                onChangeText={(text) => setFullName(text)}
+                onChangeText={(fullName) => setFullName(fullName)}
                 value={fullName}
+                underlineColorAndroid="transparent"
+                autoCapitalize="none"
+            />
+            <TextInput
+                style={styles.input}
+                placeholderTextColor="#aaaaaa"
+                secureTextEntry
+                placeholder='Phone Number'
+                onChangeText={(phoneNumber) => setPhoneNumber(phoneNumber)}
+                value={phoneNumber}
                 underlineColorAndroid="transparent"
                 autoCapitalize="none"
             />
@@ -92,7 +103,7 @@ function RegistrationScreen({ navigation }) {
                 style={styles.input}
                 placeholder='E-mail'
                 placeholderTextColor="#aaaaaa"
-                onChangeText={(text) => setEmail(text)}
+                onChangeText={(email) => setEmail(email)}
                 value={email}
                 underlineColorAndroid="transparent"
                 autoCapitalize="none"
@@ -102,7 +113,7 @@ function RegistrationScreen({ navigation }) {
                 placeholderTextColor="#aaaaaa"
                 secureTextEntry
                 placeholder='Password'
-                onChangeText={(text) => setPassword(text)}
+                onChangeText={(password) => setPassword(password)}
                 value={password}
                 underlineColorAndroid="transparent"
                 autoCapitalize="none"
@@ -112,7 +123,7 @@ function RegistrationScreen({ navigation }) {
                 placeholderTextColor="#aaaaaa"
                 secureTextEntry
                 placeholder='Confirm Password'
-                onChangeText={(text) => setConfirmPassword(text)}
+                onChangeText={(confirmPassword) => setConfirmPassword(confirmPassword)}
                 value={confirmPassword}
                 underlineColorAndroid="transparent"
                 autoCapitalize="none"

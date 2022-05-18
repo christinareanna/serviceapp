@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 // import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 // import HomeScreen from './screens/home';
-import RegistrationScreen from './UserRegistration';
+import AuthScreen from './UserRegistration';
 // import LoginScreen from './components/login';
 // import Signup from './components/signup';
 // import Dashboard from './components/dashboard';
@@ -221,7 +221,7 @@ export default function BottomTabNavigator() {
             />
             <Tab.Screen
                 name="Register"
-                component={RegistrationScreen}
+                component={AuthScreen}
                 options={{
                     tabBarLabel: 'Register',
                     tabBarIcon: ({ color, size }) => (

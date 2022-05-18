@@ -234,8 +234,12 @@
 // export default App;
 
 
+// THIS IS A MESS BUT I DON'T WANT TO DELETE IT YET BECAUSE I MIGHT COME BACK TO PARTS OF IT PERHAPS 
+// BUT FOR NOW SHE IS ENTIRELY BEAUTIFUL IN HER OWN BROKEN WAY
+// Working on backend
+
 import React, { useEffect, useState } from 'react';
-import { Button, View, Text, Image, ScrollView, TextInput, Modal, Alert } from 'react-native';
+import { Button, View, Text, Image, ScrollView, StyleSheet, TextInput, Modal, Alert } from 'react-native';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -245,6 +249,8 @@ import BottomTabNavigator from './components/BottomTabNavigator';
 import HomeScreen from './screens/home';
 import RegistrationScreen from './components/UserRegistration';
 import LoginScreen from './components/login';
+import AuthScreen from './screens/AuthScreen';
+import { StatusBar } from 'expo-status-bar';
 // import Signup from './components/signup';
 // import Dashboard from './components/dashboard';
 // import { decode, encode } from 'base-64'
@@ -254,32 +260,66 @@ import LoginScreen from './components/login';
 
 
 
-function App() {
+export default function App() {
 
-  const [loading, setLoading] = useState(true)
-  const [user, setUser] = useState(null)
+  //   const [loading, setLoading] = useState(true)
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
-  const Stack = createStackNavigator();
+  //   const Stack = createStackNavigator();
+
+
+  //   return (
+  //     <NavigationContainer>
+  //       <Stack.Navigator>
+  //         {user ? (
+  //           <Stack.Screen name="Home">
+  //             {props => <HomeScreen {...props} extraData={user} />}
+  //           </Stack.Screen>
+  //         ) : (
+  //           <>
+  //             <Stack.Screen name="Login" component={LoginScreen} />
+  //             <Stack.Screen name="Registration" component={RegistrationScreen} />
+  //           </>
+  //         )}
+  //       </Stack.Navigator>
+  //       <Stack.Screen>
+  // <BottomTabNavigator />
+  //       </Stack.Screen>
+  //     </NavigationContainer>
+  //   );
+  // }
+
+
 
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        {user ? (
-          <Stack.Screen name="Home">
-            {props => <HomeScreen {...props} extraData={user} />}
-          </Stack.Screen>
-        ) : (
+      <View style={styles.container}>
+        {/* log in screen */}
+        {/* {isSignedIn ? ( */}
+          <BottomTabNavigator />
+        {/* ) : (
           <>
-            <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="Registration" component={RegistrationScreen} />
+            <AuthScreen />
+            <StatusBar style="auto" />
           </>
-        )}
-      </Stack.Navigator>
-      {/* <BottomTabNavigator /> */}
+        )} */}
+      </View>
     </NavigationContainer>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    // alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
+
+
+
 {/* <Tab.Screen
           name="Profile"
           component={ProfileScreen}
@@ -330,6 +370,3 @@ function App() {
           options={({ route }) => ({ title: route.params.name })}
         />
       </Stack.Navigator> */}
-
-
-export default App;
