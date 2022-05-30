@@ -1,8 +1,5 @@
 # serviceapp
 React Native with Expo
 
-hi if you're reading this, just know that this is a practice prototype and not real work.
-i'm experimenting with new things and learning as I go!
-I have a lot of files that I know shouldn't be here, but I haven't organized everything yet. 
-
-:)
+This is a personal project of an app idea that I have. 
+I'm teaching myself expo and react native, so it's not designed how I'd like it to be yet. 
